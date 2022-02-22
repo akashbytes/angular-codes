@@ -1,0 +1,80 @@
+<div class="container mt-3">
+  <h2>Dynamic reactive form </h2>
+  <button type="button" (click)="addMore()" class="btn btn-info"> Add</button>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" >
+    <div class="row">
+      <div class="col-4">
+        <input type="text" formControlName="name" class="form-control" placeholder="Name" >
+        <div *ngIf="f.name.errors" class="text-danger">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <input type="text" formControlName="email" class="form-control" placeholder="Email" >
+      </div>
+    </div>
+
+    <div class="row mt-1" *ngFor="let item of formList; let i = index;">
+      <div  [formGroup]="item" >
+          <div class="row">
+              <div class="col-4">
+                <input type="text" class="form-control" formControlName="add_1"  >
+                <div *ngIf="item.controls.add_1.errors" class="text-danger">
+                    <div *ngIf="item.controls.add_1.errors.required">Name is required</div>
+                </div>
+              </div>
+
+
+
+              <div class="col-4">
+                <button type="button" class="btn btn-danger" (click)="delete(i)"> Delete</button>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <button type="submit">Submit</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+
+<div class="container mt-3">
+  <h2>Dynamic reactive form 2</h2>
+  <button type="button" (click)="addMore2()" class="btn btn-info"> Add</button>
+
+  <form [formGroup]="userForm2" (ngSubmit)="onSubmit2()" >
+    <div class="row">
+      <div class="col-4">
+        <input type="text" formControlName="name" class="form-control" placeholder="Name" >
+      </div>
+      <div class="col-4">
+        <input type="text" formControlName="email" class="form-control" placeholder="Email" >
+      </div>
+    </div>
+
+    <div class="row mt-1" *ngFor="let item of formList2; let i = index;">
+      <div  [formGroup]="item" >
+          <div class="row">
+              <div class="col-4">
+                <input type="text" class="form-control" formControlName="add_1"  >
+              </div>
+
+              <div class="col-4">
+                <button type="button" class="btn btn-danger" (click)="delete2(i)"> Delete</button>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <button type="submit">Submit</button>
+      </div>
+
+    </div>
+  </form>
+</div>
